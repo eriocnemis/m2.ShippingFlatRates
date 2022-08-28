@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers">
+            <group id="eriocnemis_flat_rates" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Flat Rates</label>
+                <attribute type="expanded">1</attribute>
+                <group id="manage" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Flat Rates Manager</label>
+                    <attribute type="expanded">1</attribute>
+                    <fieldset_css>eriocnemis-flat-rates-section with-button</fieldset_css>
+                    <frontend_model>Eriocnemis\ShippingFlatRates\Block\Adminhtml\System\Config\Form\Fieldset\Carriers</frontend_model>
+                    <comment>Create an unlimited number Flat Rates based on various Shipping Prices and Conditions.</comment>
+                    <field id="carriers" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Rates List</label>
+                        <frontend_model>Eriocnemis\ShippingFlatRates\Block\Adminhtml\System\Config\Form\Field\Carriers</frontend_model>
+                        <backend_model>Eriocnemis\ShippingFlatRates\Model\System\Config\Backend\Carriers</backend_model>
+                        <config_path>carriers/eriocnemis_flat_rates/carriers</config_path>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

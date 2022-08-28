@@ -1,0 +1,14 @@
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+.eriocnemis-flat-rates-section .heading {
+    background: url('../images/logo.png') no-repeat 0 50% / 18rem auto;
+    padding-left: 20rem;
+    min-height: 6rem;
+}
+
+.eriocnemis-flat-rates-section .button-container {
+    float: right;
+}

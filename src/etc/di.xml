@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- preferences -->
+    <preference for="Eriocnemis\ShippingFlatRates\Api\GetFlatRatesInterface" type="Eriocnemis\ShippingFlatRates\Model\ResourceModel\GetFlatRates"/>
+    <!-- configuration -->
+    <type name="Eriocnemis\ShippingFlatRates\Model\ResourceModel\GetFlatRates">
+        <arguments>
+            <argument name="source" xsi:type="object">Magento\Config\App\Config\Source\RuntimeConfigSource</argument>
+        </arguments>
+    </type>
+    <!-- plugins -->
+    <type name="Magento\Config\Model\Config\Structure\Converter">
+        <plugin name="eriocnemis_shipping_flat_rates" type="Eriocnemis\ShippingFlatRates\Plugin\Config\Model\Config\Structure\ConverterPlugin"/>
+    </type>
+    <type name="Magento\Framework\App\Config\Initial\Converter">
+        <plugin name="eriocnemis_shipping_flat_rates" type="Eriocnemis\ShippingFlatRates\Plugin\Framework\App\Config\Initial\ConverterPlugin"/>
+    </type>
+</config>

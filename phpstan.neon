@@ -1,0 +1,8 @@
+parameters:
+    checkExplicitMixedMissingReturn: true
+    checkPhpDocMissingReturn: true
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - '#Parameter \#2 \$basePrice of method Magento\\OfflineShipping\\Model\\Carrier\\Flatrate\\ItemPriceCalculator::getShippingPricePerOrder\(\) expects int, float given.#'
+        - '#Parameter \#2 \$basePrice of method Magento\\OfflineShipping\\Model\\Carrier\\Flatrate\\ItemPriceCalculator::getShippingPricePerItem\(\) expects int, float given.#'
+        - '#Call to function is_array\(\) with string will always evaluate to false.#'

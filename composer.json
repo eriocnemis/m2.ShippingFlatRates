@@ -1,0 +1,27 @@
+{
+    "name": "eriocnemis/module-shipping-flat-rates",
+    "description": "",
+    "type": "magento2-module",
+    "version": "2.4.0",
+    "authors": [
+        {
+            "name": "Eriocnemis Team",
+            "email": "dev.eriocnemis@gmail.com"
+        }
+    ],
+    "license": [
+        "OSL-3.0"
+    ],
+    "require": {
+        "php": "~7.3.0||~7.4.0",
+        "magento/framework": "103.0.*"
+    },
+    "autoload": {
+        "files": [
+            "src/registration.php"
+        ],
+        "psr-4": {
+            "Eriocnemis\\ShippingFlatRates\\": "src"
+        }
+    }
+}
