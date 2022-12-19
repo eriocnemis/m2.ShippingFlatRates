@@ -13,12 +13,19 @@ repos:
 -   repo: https://github.com/eriocnemis/git.magento_pre_commit_hooks
     rev: 1.0.10
     hooks:
-    -   id: magento-xml
     -   id: magento-phpcs
         args: ["--autofix"]
     -   id: magento-phpmd
         args: ["--rule-sets=codesize,cleancode,design"]
     -   id: magento-phpcpd
-    -   id: magento-phpstan
-        args: ["-a=/dev/tests/api-functional/framework/autoload.php"]
+ #   -   id: magento-phpstan
+ #       args: ["-a=/dev/tests/api-functional/framework/autoload.php"]
     -   id: magento-phpunit
+-   repo: local
+    hooks:
+    -   id: magento-xml
+        name: Check Xml using Xsd
+        entry: "/home/vitalii/www/.pre-commit/pre_commit_hooks/magento_xml.py"
+        language: python
+        types: [xml]
+        additional_dependencies: [lxml]
