@@ -7,8 +7,6 @@ declare(strict_types=1);
 
 namespace Eriocnemis\ShippingFlatRates\Model\ResourceModel;
 
-use Magento\Config\Model\Config\Structure;
-
 /**
  * Create flat rate
  */
@@ -20,22 +18,20 @@ class CreateFlatRate
     public const GROUP = 'eriocnemis_flat_rates';
 
     /**
-     * Key that contains field type in structure array
-     */
-    private const TYPE_KEY = Structure::TYPE_KEY;
-
-    /**
      * @var mixed[]
      */
-    private $data = [
-        'translate' => 'label',
-        'type' => 'text',
-        'sortOrder' => '10',
-        'showInDefault' => '1',
-        'showInWebsite' => '1',
-        'showInStore' => '1',
-        self::TYPE_KEY => 'group',
-    ];
+    private $data = [];
+
+    /**
+     * Initialize resource
+     *
+     * @param mixed[] $data
+     */
+    public function __construct(
+        array $data
+    ) {
+        $this->data = $data;
+    }
 
     /**
      * Create flat rate configuration
@@ -70,6 +66,7 @@ class CreateFlatRate
         foreach ($fields as $id => $data) {
             $children[$id] = $this->getChild($id, $code, $data);
         }
+
         return $children;
     }
 
@@ -87,30 +84,6 @@ class CreateFlatRate
         $data['path'] = 'carriers/' . self::GROUP . '/' . $code;
         $data['config_path'] = 'carriers/' . $code . '/' . $id;
 
-        if ('active' != $id) {
-            $data['depends'] = [
-                'fields' => [
-                    'active' => $this->getActiveDepend($code)
-                ]
-            ];
-        }
-
         return $data;
-    }
-
-    /**
-     * Retrieve depend path
-     *
-     * @param string $code
-     * @return mixed[]
-     */
-    private function getActiveDepend(string $code)
-    {
-        return [
-            'id' => 'carriers/' . self::GROUP . '/' . $code . '/active',
-            'value' => '1',
-            self::TYPE_KEY => 'field',
-            'dependPath' => ['carriers', self::GROUP, $code, 'active']
-        ];
     }
 }

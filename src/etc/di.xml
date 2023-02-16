@@ -15,6 +15,19 @@
             <argument name="source" xsi:type="object">Magento\Config\App\Config\Source\RuntimeConfigSource</argument>
         </arguments>
     </type>
+    <type name="Eriocnemis\ShippingFlatRates\Model\ResourceModel\CreateFlatRate">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="translate" xsi:type="string">label</item>
+                <item name="type" xsi:type="string">text</item>
+                <item name="sortOrder" xsi:type="string">10</item>
+                <item name="showInDefault" xsi:type="string">1</item>
+                <item name="showInWebsite" xsi:type="string">1</item>
+                <item name="showInStore" xsi:type="string">1</item>
+                <item name="_elementType" xsi:type="string">group</item>
+            </argument>
+        </arguments>
+    </type>
     <!-- plugins -->
     <type name="Magento\Config\Model\Config\Structure\Converter">
         <plugin name="eriocnemis_shipping_flat_rates" type="Eriocnemis\ShippingFlatRates\Plugin\Config\Model\Config\Structure\ConverterPlugin"/>
