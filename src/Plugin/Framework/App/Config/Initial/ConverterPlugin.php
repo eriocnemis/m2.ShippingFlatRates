@@ -45,22 +45,27 @@ class ConverterPlugin
      * Modify system configuration
      *
      * @param Converter $converter
-     * @param mixed[] $result
+     * @param mixed[] $config
      * @return mixed[]
      */
-    public function afterConvert(Converter $converter, array $result)
+    public function afterConvert(Converter $converter, array $config)
     {
-        $carriers = $result['data']['default']['carriers'] ?? [];
-        $data = $carriers['flatrate'] ?? [];
+        $flatratePath = $this->arrayManager->findPath('flatrate', $config);
+        $carriersPath = $this->arrayManager->findPath('carriers', $config);
 
-        foreach ($this->getFlatRates->execute() as $code => $label) {
-            $data['model'] = Carrier::class;
-            $data['title'] = $label;
-            /* add new group to config */
-            $carriers[$code] = $data;
+        if (null !== $flatratePath && null !== $carriersPath) {
+            $data = (array)$this->arrayManager->get($flatratePath, $config, []);
+
+            $flatRates = [];
+            foreach ($this->getFlatRates->execute() as $code => $label) {
+                $data['model'] = Carrier::class;
+                $data['title'] = $label;
+                /* add new group to config */
+                $flatRates[$code] = $data;
+            }
+            $config = $this->arrayManager->merge($carriersPath, $config, $flatRates);
         }
 
-        $result['data']['default']['carriers'] = $carriers;
-        return $result;
+        return $config;
     }
 }

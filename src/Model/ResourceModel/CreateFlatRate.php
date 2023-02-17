@@ -64,8 +64,8 @@ class CreateFlatRate
     {
         $children = [];
         /** @var mixed[] $data */
-        foreach ($fields as $id => $data) {
-            $children[$id] = $this->getChild($id, $code, $data);
+        foreach ($fields as $fieldId => $data) {
+            $children[$fieldId] = $this->getChild($fieldId, $code, $data);
         }
 
         return $children;
@@ -74,16 +74,16 @@ class CreateFlatRate
     /**
      * Retrieve configuration of child
      *
-     * @param string $id
+     * @param string $fieldId
      * @param string $code
      * @param mixed[] $data
      * @return mixed[]
      * @todo nide add dept ship to specific countries field
      */
-    private function getChild(string $id, string $code, array $data): array
+    private function getChild(string $fieldId, string $code, array $data): array
     {
         $data['path'] = 'carriers/' . self::GROUP . '/' . $code;
-        $data['config_path'] = 'carriers/' . $code . '/' . $id;
+        $data['config_path'] = 'carriers/' . $code . '/' . $fieldId;
 
         return $data;
     }
