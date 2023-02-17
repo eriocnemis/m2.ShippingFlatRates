@@ -8,7 +8,7 @@ declare(strict_types=1);
 namespace Eriocnemis\ShippingFlatRates\Model\ResourceModel;
 
 /**
- * Create flat rate
+ * Create flat rate data
  */
 class CreateFlatRate
 {
@@ -63,6 +63,7 @@ class CreateFlatRate
     private function getChildren(array $fields, string $code): array
     {
         $children = [];
+        /** @var mixed[] $data */
         foreach ($fields as $id => $data) {
             $children[$id] = $this->getChild($id, $code, $data);
         }

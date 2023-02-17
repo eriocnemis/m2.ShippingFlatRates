@@ -12,7 +12,7 @@ use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory;
 use Magento\Quote\Model\Quote\Address\RateResult\Method;
 
 /**
- * Get result method
+ * Get carrier method
  */
 class GetResultMethod
 {

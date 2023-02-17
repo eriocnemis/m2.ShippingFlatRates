@@ -12,7 +12,7 @@ use Magento\Shipping\Model\Carrier\AbstractCarrierInterface;
 use Magento\OfflineShipping\Model\Carrier\Flatrate\ItemPriceCalculator;
 
 /**
- * Get shipping price
+ * Calculate shipping price
  */
 class GetShippingPrice
 {

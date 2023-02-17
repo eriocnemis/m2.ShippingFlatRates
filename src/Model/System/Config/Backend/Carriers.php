@@ -24,6 +24,7 @@ class Carriers extends ArraySerialized
      */
     public function beforeSave()
     {
+        /** @var mixed[] $value */
         $value = $this->getValue();
         if (is_array($value)) {
             foreach ($value as $key => $data) {
@@ -40,7 +41,8 @@ class Carriers extends ArraySerialized
             }
         }
 
-        $this->setValue($value);
+        $this->setData('value', $value);
+
         return parent::beforeSave();
     }
 

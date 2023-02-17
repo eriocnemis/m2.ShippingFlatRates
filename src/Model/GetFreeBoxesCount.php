@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Eriocnemis\ShippingFlatRates\Model;
 
 use Magento\Quote\Model\Quote\Address\RateRequest;
+use Magento\Quote\Model\Quote\Item\AbstractItem;
 
 /**
  * Get count of free boxes
@@ -42,12 +43,13 @@ class GetFreeBoxesCount
     /**
      * Returns free boxes count of children
      *
-     * @param mixed $item
-     * @return int
+     * @param AbstractItem $item
+     * @return float
      */
     private function getFreeBoxesCountFromChildren($item)
     {
         $freeBoxes = 0;
+        /** @var \Magento\Quote\Model\Quote\Address\Item $child */
         foreach ($item->getChildren() as $child) {
             if ($child->getFreeShipping() && !$child->getProduct()->isVirtual()) {
                 $freeBoxes += $item->getQty() * $child->getQty();
