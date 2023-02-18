@@ -112,6 +112,8 @@ class Carriers extends AbstractFieldset
      */
     protected function _isCollapseState($element)
     {
-        return false;
+        $element->setData('expanded', false);
+
+        return parent::_isCollapseState($element);
     }
 }

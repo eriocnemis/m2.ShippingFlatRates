@@ -30,7 +30,7 @@ class GetShippingPrice
     }
 
     /**
-     * Returns shipping price
+     * Retrieve shipping price
      *
      * @param AbstractCarrierInterface $carrier
      * @param RateRequest $request
@@ -43,7 +43,7 @@ class GetShippingPrice
         $freeBoxes = $this->getFreeBoxesCount->execute($request);
         $shippingPrice = null;
 
-        $configPrice = (float)$carrier->getConfigData('price');
+        $configPrice = $this->getConfigPrice($carrier);
         if ($carrier->getConfigData('type') === 'O') {
             // per order
             $shippingPrice = $request->getPackageQty() * $configPrice - $freeBoxes * $configPrice;
@@ -60,5 +60,20 @@ class GetShippingPrice
         }
 
         return $shippingPrice;
+    }
+
+    /**
+     * Retrieve config price
+     *
+     * @param AbstractCarrierInterface $carrier
+     * @return float
+     */
+    private function getConfigPrice(AbstractCarrierInterface $carrier)
+    {
+        $configPrice = $carrier->getConfigData('price');
+        if (is_string($configPrice)) {
+            return (float)$configPrice;
+        }
+        return 0.00;
     }
 }

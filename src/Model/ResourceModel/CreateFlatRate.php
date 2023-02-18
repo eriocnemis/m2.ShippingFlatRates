@@ -18,6 +18,11 @@ class CreateFlatRate
     public const GROUP = 'eriocnemis_flat_rates';
 
     /**
+     * Default delimiter for path
+     */
+    private const DELIMITER = '/';
+
+    /**
      * @var mixed[]
      */
     private $data = [];
@@ -47,7 +52,7 @@ class CreateFlatRate
             'id' => $code,
             'label' => __($label),
             'children' => $this->getChildren($fields, $code),
-            'path' => 'carriers/' . self::GROUP
+            'path' => 'carriers' . self::DELIMITER . self::GROUP
         ];
 
         return array_merge($this->data, $data);
@@ -82,8 +87,8 @@ class CreateFlatRate
      */
     private function getChild(string $fieldId, string $code, array $data): array
     {
-        $data['path'] = 'carriers/' . self::GROUP . '/' . $code;
-        $data['config_path'] = 'carriers/' . $code . '/' . $fieldId;
+        $data['path'] = 'carriers' . self::DELIMITER . self::GROUP . self::DELIMITER . $code;
+        $data['config_path'] = 'carriers' . self::DELIMITER . $code . self::DELIMITER . $fieldId;
 
         return $data;
     }
